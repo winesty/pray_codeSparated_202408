@@ -2,17 +2,12 @@ const characters = ["지", "기", "금", "지", "원", "위", "대", "강", "시
 let currentBead = 0;
 let selectedItem = null;
 let count = 0;
-let beadCount = 21;
-let beepThreshold = 0; // User-set beep threshold
-
 const touchArea = document.getElementById('touchArea');
 const countDisplay = document.getElementById('touchCountDisplay');
 const inputButton = document.getElementById('inputButton');
 const userInput = document.getElementById('userInput');
 const inputList = document.getElementById('inputList');
-const beadCountSelector = document.getElementById('beadCount');
-const customBeadCountInput = document.getElementById('customBeadCount');
-const beepCountInput = document.getElementById('beepCountInput');
+const beadCountSelect = document.getElementById('beadCount');
 
 function updateListCount() {
     document.getElementById('listCount').textContent = `목록 수: ${inputList.children.length}`;
@@ -32,25 +27,25 @@ function addInputToList() {
         item.addEventListener('contextmenu', showButtons);
         item.querySelector('.deleteButton').addEventListener('click', deleteItem);
         item.querySelector('.resetButton').addEventListener('click', resetItemCount);
-        inputList.insertBefore(item, inputList.firstChild);  // Insert at the top
+        inputList.insertBefore(item, inputList.firstChild);
         userInput.value = '';
         updateListCount();
-        selectItem({ target: item });  // Automatically select the newest item
+        selectItem({ target: item });
     }
 }
 
 function deleteItem(e) {
-    e.stopPropagation();  // Prevent triggering selectItem
+    e.stopPropagation();
     const itemToDelete = e.target.closest('.inputItem');
     inputList.removeChild(itemToDelete);
     updateListCount();
     if (selectedItem === itemToDelete) {
-        selectedItem = null;  // Deselect if the selected item is deleted
+        selectedItem = null;
     }
 }
 
 function resetItemCount(e) {
-    e.stopPropagation();  // Prevent triggering selectItem
+    e.stopPropagation();
     const itemToReset = e.target.closest('.inputItem');
     itemToReset.dataset.count = 0;
     itemToReset.querySelector('.itemText').textContent = `${itemToReset.querySelector('.itemText').textContent.split(':')[0]} : 0`;
@@ -64,7 +59,7 @@ function selectItem(e) {
     selectedItem.style.backgroundColor = 'lightblue';
     count = parseInt(selectedItem.dataset.count);
     countDisplay.textContent = `묵송 회수: ${count}`;
-    resetBeadOrder();  // Reset bead lighting order
+    resetBeadOrder();
 }
 
 function showButtons(e) {
@@ -84,22 +79,21 @@ function showButtons(e) {
     });
 }
 
-function createBeads() {
+function createBeads(beadCount) {
+    touchArea.innerHTML = '<div id="touchCountDisplay">묵송 회수: 0</div>'; // Clear existing beads but keep the count display
     const radius = 120;
     const centerX = 150;
     const centerY = 150;
-
-    // Remove existing beads
-    touchArea.querySelectorAll('.bead').forEach(bead => bead.remove());
+    currentBead = 0;
 
     for (let i = 0; i < beadCount; i++) {
         const bead = document.createElement('div');
         bead.className = 'bead';
-        bead.textContent = characters[i % characters.length];
+        bead.textContent = characters[i % characters.length]; // Repeat the character array if needed
         if (i === 0) {
             bead.classList.add('first-bead');
-            bead.style.left = `${centerX - 17}px`; // Center the first bead
-            bead.style.top = `${centerY - radius - 17}px`; // Place at 12 o'clock
+            bead.style.left = `${centerX - 17}px`;
+            bead.style.top = `${centerY - radius - 17}px`;
         } else {
             const angle = (i / beadCount) * (2 * Math.PI) - Math.PI / 2;
             const x = centerX + radius * Math.cos(angle) - 14;
@@ -118,17 +112,11 @@ function lightUpBead() {
         beads[currentBead].classList.add('highlight');
         currentBead = (currentBead + 1) % beads.length;
     }
-    // Update 묵송 회수
     count++;
     countDisplay.textContent = `묵송 회수: ${count}`;
     if (selectedItem) {
         selectedItem.dataset.count = count;
         selectedItem.querySelector('.itemText').textContent = `${selectedItem.querySelector('.itemText').textContent.split(':')[0]} : ${count}`;
-    }
-
-    // Check if the count reaches the user-set beep threshold
-    if (beepThreshold > 0 && count % beepThreshold === 0) {
-        playBeep();
     }
 }
 
@@ -138,36 +126,25 @@ function resetBeadOrder() {
     currentBead = 0;
 }
 
-// Play beep sound
-function playBeep() {
-    // Triggers a system sound using an alert dialog, which may produce a beep sound
-    alert('Beep!');
-}
-
-// Event Listeners
-beadCountSelector.addEventListener('change', (e) => {
-    const value = e.target.value;
-    if (value === 'custom') {
-        customBeadCountInput.style.display = 'block';
-        beadCount = parseInt(customBeadCountInput.value) || 21;
-    } else {
-        customBeadCountInput.style.display = 'none';
-        beadCount = parseInt(value);
-    }
-    createBeads();
-});
-
-customBeadCountInput.addEventListener('input', (e) => {
-    beadCount = parseInt(e.target.value) || 21;
-    createBeads();
-});
-
-beepCountInput.addEventListener('input', (e) => {
-    beepThreshold = parseInt(e.target.value);
-});
-
 touchArea.addEventListener('mousedown', lightUpBead);
 inputButton.addEventListener('click', addInputToList);
 
-// Initial bead creation
-createBeads();
+// Handle changes in bead count selection, including custom input
+beadCountSelect.addEventListener('change', (e) => {
+    if (e.target.value === 'custom') {
+        const customBeadCount = prompt("사용자 입력 갯수를 입력하세요:", "21");
+        if (customBeadCount && !isNaN(customBeadCount) && customBeadCount > 0) {
+            createBeads(parseInt(customBeadCount));
+        } else {
+            alert("유효한 숫자를 입력하세요.");
+            beadCountSelect.value = "21";  // Reset to default if invalid input
+            createBeads(21);
+        }
+    } else {
+        const beadCount = parseInt(e.target.value);
+        createBeads(beadCount);
+    }
+});
+
+// Initialize with default bead count (21 beads)
+createBeads(parseInt(beadCountSelect.value));
