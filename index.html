@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Touch Counter with Prayer Beads</title>
+  <link rel="stylesheet" href="styles.css">
+<link type="text/css" rel="stylesheet" href="css/style.css"/>
+</head>
+
+<body>
+  <h2>이루고 싶은 것들</h2>
+
+  <div id="menuButton">
+    <div class="menu-line"></div>
+    <div class="menu-line"></div>
+  </div>
+
+  <div id="dropdownMenu" class="hidden">
+    <div class="dropdown-item" id="beadCountSelector">묵주 알 갯수 선택: <span id="currentBeads">21</span></div>
+    <div class="dropdown-item">로그인/가입</div>
+  </div>
+
+  <div id="beadCountOptions" class="hidden">
+    <div class="bead-option" data-count="21">21</div>
+    <div class="bead-option" data-count="14">14</div>
+    <div class="bead-option" data-count="10">10</div>
+    <div class="bead-option" id="customBeadCount">사용자 선택</div>
+  </div>
+
+  <div id="inputArea">
+    <input type="text" id="userInput" placeholder="여기에 이루고 싶은 것을 적어 주세요">
+    <button id="inputButton">입력</button>
+  </div>
+
+  <div id="touchArea">
+    <div id="touchCountDisplay">묵송 회수: 0</div>
+  </div>
+
+  <div id="listCount">목록 수: 0</div>
+  <div id="inputList"></div>
+
+  <script src="script.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+</body>
+
+</html>
