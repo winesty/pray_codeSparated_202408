@@ -1,32 +1,58 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Touch Counter with Prayer Beads</title>
-    <link rel="stylesheet" href="style.css">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title>Touch Counter with Prayer Beads</title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2113.65">
+  <style type="text/css">
+    span.s1 {font-kerning: none}
+  </style>
 </head>
 <body>
-    <h2>이루고 싶은 것들</h2>
-    <div id="inputArea">
-        <input type="text" id="userInput" placeholder="여기에 이루고 싶은 것을 적어 주세요">
-        <button id="inputButton">입력</button>
-    </div>
-    <div>
-        <label for="beadCount">묵주 알 갯수 선택: </label>
-        <select id="beadCount">
-            <option value="21" selected>21</option>
-            <option value="14">14</option>
-            <option value="10">10</option>
-            <option value="custom">사용자 입력</option>
-        </select>
-    </div>
-    <div id="touchArea">
-        <div id="touchCountDisplay">묵송 회수: 0</div>
-    </div>
-    <div id="listCount">목록 수: 0</div>
-    <div id="inputList"></div>
-
-    <script src="script.js"></script>
+<h2 style="margin: 0.0px 0.0px 10.0px 0.0px; font: 18.0px 'Apple SD Gothic Neo'; color: #000000; -webkit-text-stroke: #000000"><span class="s1"><b>&lt;!DOCTYPE html&gt;</b></span></h2>
+<h2 style="margin: 0.0px 0.0px 10.0px 0.0px; font: 18.0px 'Apple SD Gothic Neo'; color: #000000; -webkit-text-stroke: #000000"><span class="s1"><b>&lt;html lang="en"&gt;</b></span></h2>
+<h2 style="margin: 0.0px 0.0px 10.0px 0.0px; font: 18.0px 'Apple SD Gothic Neo'; color: #000000; -webkit-text-stroke: #000000"><span class="s1"><b>&lt;head&gt;</b></span></h2>
+<h2 style="margin: 0.0px 0.0px 10.0px 0.0px; font: 18.0px 'Apple SD Gothic Neo'; color: #000000; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</b></span></h2>
+<h2 style="margin: 0.0px 0.0px 10.0px 0.0px; font: 18.0px 'Apple SD Gothic Neo'; color: #000000; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</b></span></h2>
+<h2 style="margin: 0.0px 0.0px 10.0px 0.0px; font: 18.0px 'Apple SD Gothic Neo'; color: #000000; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">    </span>&lt;title&gt;Touch Counter with Prayer Beads&lt;/title&gt;</b></span></h2>
+<h2 style="margin: 0.0px 0.0px 10.0px 0.0px; font: 18.0px 'Apple SD Gothic Neo'; color: #000000; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">    </span>&lt;link rel="stylesheet" href="styles.css"&gt;</b></span></h2>
+<h2 style="margin: 0.0px 0.0px 10.0px 0.0px; font: 18.0px 'Apple SD Gothic Neo'; color: #000000; -webkit-text-stroke: #000000"><span class="s1"><b>&lt;/head&gt;</b></span></h2>
+<h2 style="margin: 0.0px 0.0px 10.0px 0.0px; font: 18.0px 'Apple SD Gothic Neo'; color: #000000; -webkit-text-stroke: #000000"><span class="s1"><b>&lt;body&gt;</b></span></h2>
+<h2 style="margin: 0.0px 0.0px 10.0px 0.0px; font: 18.0px 'Apple SD Gothic Neo'; color: #000000; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">    </span>&lt;h2&gt;이루고 싶은 것들&lt;/h2&gt;</b></span></h2>
+<h2 style="margin: 0.0px 0.0px 10.0px 0.0px; font: 18.0px 'Apple SD Gothic Neo'; color: #000000; -webkit-text-stroke: #000000; min-height: 21.0px"><span class="s1"><b></b></span><br></h2>
+<h2 style="margin: 0.0px 0.0px 10.0px 0.0px; font: 18.0px 'Apple SD Gothic Neo'; color: #000000; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">    </span>&lt;div id="menuButton"&gt;</b></span></h2>
+<h2 style="margin: 0.0px 0.0px 10.0px 0.0px; font: 18.0px 'Apple SD Gothic Neo'; color: #000000; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">        </span>&lt;div class="menu-line"&gt;&lt;/div&gt;</b></span></h2>
+<h2 style="margin: 0.0px 0.0px 10.0px 0.0px; font: 18.0px 'Apple SD Gothic Neo'; color: #000000; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">        </span>&lt;div class="menu-line"&gt;&lt;/div&gt;</b></span></h2>
+<h2 style="margin: 0.0px 0.0px 10.0px 0.0px; font: 18.0px 'Apple SD Gothic Neo'; color: #000000; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">    </span>&lt;/div&gt;</b></span></h2>
+<h2 style="margin: 0.0px 0.0px 10.0px 0.0px; font: 18.0px 'Apple SD Gothic Neo'; color: #000000; -webkit-text-stroke: #000000; min-height: 21.0px"><span class="s1"><b></b></span><br></h2>
+<h2 style="margin: 0.0px 0.0px 10.0px 0.0px; font: 18.0px 'Apple SD Gothic Neo'; color: #000000; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">    </span>&lt;div id="dropdownMenu" class="hidden"&gt;</b></span></h2>
+<h2 style="margin: 0.0px 0.0px 10.0px 0.0px; font: 18.0px 'Apple SD Gothic Neo'; color: #000000; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">        </span>&lt;div class="dropdown-item" id="beadCountSelector"&gt;묵주 알 갯수 선택: &lt;span id="currentBeads"&gt;21&lt;/span&gt;&lt;/div&gt;</b></span></h2>
+<h2 style="margin: 0.0px 0.0px 10.0px 0.0px; font: 18.0px 'Apple SD Gothic Neo'; color: #000000; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">        </span>&lt;div class="dropdown-item"&gt;로그인/가입&lt;/div&gt;</b></span></h2>
+<h2 style="margin: 0.0px 0.0px 10.0px 0.0px; font: 18.0px 'Apple SD Gothic Neo'; color: #000000; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">    </span>&lt;/div&gt;</b></span></h2>
+<h2 style="margin: 0.0px 0.0px 10.0px 0.0px; font: 18.0px 'Apple SD Gothic Neo'; color: #000000; -webkit-text-stroke: #000000; min-height: 21.0px"><span class="s1"><b></b></span><br></h2>
+<h2 style="margin: 0.0px 0.0px 10.0px 0.0px; font: 18.0px 'Apple SD Gothic Neo'; color: #000000; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">    </span>&lt;div id="beadCountOptions" class="hidden"&gt;</b></span></h2>
+<h2 style="margin: 0.0px 0.0px 10.0px 0.0px; font: 18.0px 'Apple SD Gothic Neo'; color: #000000; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">        </span>&lt;div class="bead-option" data-count="21"&gt;21&lt;/div&gt;</b></span></h2>
+<h2 style="margin: 0.0px 0.0px 10.0px 0.0px; font: 18.0px 'Apple SD Gothic Neo'; color: #000000; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">        </span>&lt;div class="bead-option" data-count="14"&gt;14&lt;/div&gt;</b></span></h2>
+<h2 style="margin: 0.0px 0.0px 10.0px 0.0px; font: 18.0px 'Apple SD Gothic Neo'; color: #000000; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">        </span>&lt;div class="bead-option" data-count="10"&gt;10&lt;/div&gt;</b></span></h2>
+<h2 style="margin: 0.0px 0.0px 10.0px 0.0px; font: 18.0px 'Apple SD Gothic Neo'; color: #000000; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">        </span>&lt;div class="bead-option" id="customBeadCount"&gt;사용자 선택&lt;/div&gt;</b></span></h2>
+<h2 style="margin: 0.0px 0.0px 10.0px 0.0px; font: 18.0px 'Apple SD Gothic Neo'; color: #000000; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">    </span>&lt;/div&gt;</b></span></h2>
+<h2 style="margin: 0.0px 0.0px 10.0px 0.0px; font: 18.0px 'Apple SD Gothic Neo'; color: #000000; -webkit-text-stroke: #000000; min-height: 21.0px"><span class="s1"><b></b></span><br></h2>
+<h2 style="margin: 0.0px 0.0px 10.0px 0.0px; font: 18.0px 'Apple SD Gothic Neo'; color: #000000; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">    </span>&lt;div id="inputArea"&gt;</b></span></h2>
+<h2 style="margin: 0.0px 0.0px 10.0px 0.0px; font: 18.0px 'Apple SD Gothic Neo'; color: #000000; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">        </span>&lt;input type="text" id="userInput" placeholder="여기에 이루고 싶은 것을 적어 주세요"&gt;</b></span></h2>
+<h2 style="margin: 0.0px 0.0px 10.0px 0.0px; font: 18.0px 'Apple SD Gothic Neo'; color: #000000; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">        </span>&lt;button id="inputButton"&gt;입력&lt;/button&gt;</b></span></h2>
+<h2 style="margin: 0.0px 0.0px 10.0px 0.0px; font: 18.0px 'Apple SD Gothic Neo'; color: #000000; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">    </span>&lt;/div&gt;</b></span></h2>
+<h2 style="margin: 0.0px 0.0px 10.0px 0.0px; font: 18.0px 'Apple SD Gothic Neo'; color: #000000; -webkit-text-stroke: #000000; min-height: 21.0px"><span class="s1"><b></b></span><br></h2>
+<h2 style="margin: 0.0px 0.0px 10.0px 0.0px; font: 18.0px 'Apple SD Gothic Neo'; color: #000000; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">    </span>&lt;div id="touchArea"&gt;</b></span></h2>
+<h2 style="margin: 0.0px 0.0px 10.0px 0.0px; font: 18.0px 'Apple SD Gothic Neo'; color: #000000; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">        </span>&lt;div id="touchCountDisplay"&gt;묵송 회수: 0&lt;/div&gt;</b></span></h2>
+<h2 style="margin: 0.0px 0.0px 10.0px 0.0px; font: 18.0px 'Apple SD Gothic Neo'; color: #000000; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">    </span>&lt;/div&gt;</b></span></h2>
+<h2 style="margin: 0.0px 0.0px 10.0px 0.0px; font: 18.0px 'Apple SD Gothic Neo'; color: #000000; -webkit-text-stroke: #000000; min-height: 21.0px"><span class="s1"><b><span class="Apple-converted-space">    </span></b></span></h2>
+<h2 style="margin: 0.0px 0.0px 10.0px 0.0px; font: 18.0px 'Apple SD Gothic Neo'; color: #000000; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">    </span>&lt;div id="listCount"&gt;목록 수: 0&lt;/div&gt;</b></span></h2>
+<h2 style="margin: 0.0px 0.0px 10.0px 0.0px; font: 18.0px 'Apple SD Gothic Neo'; color: #000000; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">    </span>&lt;div id="inputList"&gt;&lt;/div&gt;</b></span></h2>
+<h2 style="margin: 0.0px 0.0px 10.0px 0.0px; font: 18.0px 'Apple SD Gothic Neo'; color: #000000; -webkit-text-stroke: #000000; min-height: 21.0px"><span class="s1"><b></b></span><br></h2>
+<h2 style="margin: 0.0px 0.0px 10.0px 0.0px; font: 18.0px 'Apple SD Gothic Neo'; color: #000000; -webkit-text-stroke: #000000"><span class="s1"><b><span class="Apple-converted-space">    </span>&lt;script src="script.js"&gt;&lt;/script&gt;</b></span></h2>
+<h2 style="margin: 0.0px 0.0px 10.0px 0.0px; font: 18.0px 'Apple SD Gothic Neo'; color: #000000; -webkit-text-stroke: #000000"><span class="s1"><b>&lt;/body&gt;</b></span></h2>
+<h2 style="margin: 0.0px 0.0px 10.0px 0.0px; font: 18.0px 'Apple SD Gothic Neo'; color: #000000; -webkit-text-stroke: #000000"><span class="s1"><b>&lt;/html&gt;</b></span></h2>
 </body>
 </html>

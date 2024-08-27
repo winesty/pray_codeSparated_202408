@@ -2,12 +2,71 @@ const characters = ["지", "기", "금", "지", "원", "위", "대", "강", "시
 let currentBead = 0;
 let selectedItem = null;
 let count = 0;
+let beadCount = 21;
+
 const touchArea = document.getElementById('touchArea');
 const countDisplay = document.getElementById('touchCountDisplay');
 const inputButton = document.getElementById('inputButton');
 const userInput = document.getElementById('userInput');
 const inputList = document.getElementById('inputList');
-const beadCountSelect = document.getElementById('beadCount');
+const dropdownMenu = document.getElementById('dropdownMenu');
+const menuButton = document.getElementById('menuButton');
+const currentBeadsDisplay = document.getElementById('currentBeads');
+const beadCountSelector = document.getElementById('beadCountSelector');
+const beadCountOptions = document.getElementById('beadCountOptions');
+const customBeadCount = document.getElementById('customBeadCount');
+
+menuButton.addEventListener('click', function () {
+    dropdownMenu.classList.toggle('hidden');
+    beadCountOptions.classList.add('hidden');
+});
+
+beadCountSelector.addEventListener('click', function (e) {
+    e.stopPropagation();
+    beadCountOptions.classList.toggle('hidden');
+});
+
+document.addEventListener('click', function (e) {
+    if (!menuButton.contains(e.target) && !dropdownMenu.contains(e.target) && !beadCountOptions.contains(e.target)) {
+        dropdownMenu.classList.add('hidden');
+        beadCountOptions.classList.add('hidden');
+    }
+});
+
+beadCountOptions.addEventListener('click', function (e) {
+    if (e.target.classList.contains('bead-option')) {
+        const newCount = e.target.dataset.count;
+        if (newCount) {
+            beadCount = parseInt(newCount);
+            updateBeadCount();
+        } else if (e.target.id === 'customBeadCount') {
+            const userInput = prompt('원하는 묵주 알 갯수를 입력하세요:');
+            if (userInput === null || userInput.trim() === '') {
+                alert('숫자를 넣어주세요');
+            } else {
+                const parsedInput = parseInt(userInput);
+                if (!isNaN(parsedInput) && parsedInput > 0) {
+                    beadCount = parsedInput;
+                    updateBeadCount();
+                } else {
+                    alert('유효한 숫자를 입력해주세요');
+                }
+            }
+        }
+        beadCountOptions.classList.add('hidden');
+    }
+});
+
+function updateBeadCount() {
+    currentBeadsDisplay.textContent = beadCount;
+    recreateBeads();
+}
+
+function recreateBeads() {
+    touchArea.innerHTML = `<div id="touchCountDisplay">묵송 회수: ${count}</div>`;
+    createBeads();
+    resetBeadOrder();
+}
 
 function updateListCount() {
     document.getElementById('listCount').textContent = `목록 수: ${inputList.children.length}`;
@@ -79,17 +138,14 @@ function showButtons(e) {
     });
 }
 
-function createBeads(beadCount) {
-    touchArea.innerHTML = '<div id="touchCountDisplay">묵송 회수: 0</div>'; // Clear existing beads but keep the count display
+function createBeads() {
     const radius = 120;
     const centerX = 150;
     const centerY = 150;
-    currentBead = 0;
-
     for (let i = 0; i < beadCount; i++) {
         const bead = document.createElement('div');
         bead.className = 'bead';
-        bead.textContent = characters[i % characters.length]; // Repeat the character array if needed
+        bead.textContent = characters[i % characters.length];
         if (i === 0) {
             bead.classList.add('first-bead');
             bead.style.left = `${centerX - 17}px`;
@@ -112,6 +168,7 @@ function lightUpBead() {
         beads[currentBead].classList.add('highlight');
         currentBead = (currentBead + 1) % beads.length;
     }
+
     count++;
     countDisplay.textContent = `묵송 회수: ${count}`;
     if (selectedItem) {
@@ -129,22 +186,4 @@ function resetBeadOrder() {
 touchArea.addEventListener('mousedown', lightUpBead);
 inputButton.addEventListener('click', addInputToList);
 
-// Handle changes in bead count selection, including custom input
-beadCountSelect.addEventListener('change', (e) => {
-    if (e.target.value === 'custom') {
-        const customBeadCount = prompt("사용자 입력 갯수를 입력하세요:", "21");
-        if (customBeadCount && !isNaN(customBeadCount) && customBeadCount > 0) {
-            createBeads(parseInt(customBeadCount));
-        } else {
-            alert("유효한 숫자를 입력하세요.");
-            beadCountSelect.value = "21";  // Reset to default if invalid input
-            createBeads(21);
-        }
-    } else {
-        const beadCount = parseInt(e.target.value);
-        createBeads(beadCount);
-    }
-});
-
-// Initialize with default bead count (21 beads)
-createBeads(parseInt(beadCountSelect.value));
+createBeads();
