@@ -1,60 +1,48 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!DOCTYPE html>
 <html>
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2113.65">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
-    span.s1 {font: 12.0px 'Apple SD Gothic Neo'}
-  </style>
+<head><meta http-equiv="cache-control" content="no-cache"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="-1"><style type="text/css">.lw { font-size: 60px; }</style>
+
+
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Touch Counter with Prayer Beads</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html lang="en"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;Touch Counter with Prayer Beads&lt;/title&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;link rel="stylesheet" href="styles.css"&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;h2&gt;<span class="s1">이루고</span> <span class="s1">싶은</span> <span class="s1">것들</span>&lt;/h2&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="menuButton"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="menu-line"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="menu-line"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="dropdownMenu" class="hidden"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="dropdown-item" id="beadCountSelector"&gt;<span class="s1">묵주</span> <span class="s1">알</span> <span class="s1">갯수</span> <span class="s1">선택</span>: &lt;span id="currentBeads"&gt;21&lt;/span&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="dropdown-item"&gt;<span class="s1">로그인</span>/<span class="s1">가입</span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="beadCountOptions" class="hidden"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="bead-option" data-count="21"&gt;21&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="bead-option" data-count="14"&gt;14&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="bead-option" data-count="10"&gt;10&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="bead-option" id="customBeadCount"&gt;<span class="s1">사용자</span> <span class="s1">선택</span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="inputArea"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;input type="text" id="userInput" placeholder="<span class="s1">여기에</span> <span class="s1">이루고</span> <span class="s1">싶은</span> <span class="s1">것을</span> <span class="s1">적어</span> <span class="s1">주세요</span>"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;button id="inputButton"&gt;<span class="s1">입력</span>&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="touchArea"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;div id="touchCountDisplay"&gt;<span class="s1">묵송</span> <span class="s1">회수</span>: 0&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p2"><span class="Apple-converted-space">    </span></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="listCount"&gt;<span class="s1">목록</span> <span class="s1">수</span>: 0&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="inputList"&gt;&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="script.js"&gt;&lt;/script&gt;</p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
-</body>
-</html>
+  <h2>이루고 싶은 것들</h2>
+
+  <div id="menuButton">
+    <div class="menu-line"></div>
+    <div class="menu-line"></div>
+  </div>
+
+  <div id="dropdownMenu" class="hidden">
+    <div class="dropdown-item" id="beadCountSelector">묵주 알 갯수 선택: <span id="currentBeads">21</span></div>
+    <div class="dropdown-item">로그인/가입</div>
+  </div>
+
+  <div id="beadCountOptions" class="hidden">
+    <div class="bead-option" data-count="21">21</div>
+    <div class="bead-option" data-count="14">14</div>
+    <div class="bead-option" data-count="10">10</div>
+    <div class="bead-option" id="customBeadCount">사용자 선택</div>
+  </div>
+
+  <div id="inputArea">
+    <input type="text" id="userInput" placeholder="여기에 이루고 싶은 것을 적어 주세요">
+    <button id="inputButton">입력</button>
+  </div>
+
+  <div id="touchArea">
+    <div id="touchCountDisplay">묵송 회수: 0</div>
+  </div>
+
+  <div id="listCount">목록 수: 0</div>
+  <div id="inputList"></div>
+
+  <script src="script.js"></script>
+
+
+<script>// Write JavaScript here</script></body>
