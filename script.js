@@ -73,6 +73,7 @@ beadCountOptions.addEventListener('click', function (e) {
 function updateBeadCount() {
     currentBeadsDisplay.textContent = beadCount;
     currentBeepBeadsDisplay.textContent = beadCount;
+    localStorage.setItem('beadCount', beadCount); // Save to localStorage
     if (beepCount === beadCount) {
         currentBeepDisplay.textContent = `현재 ${beadCount}`;
     }
@@ -107,7 +108,18 @@ function addInputToList() {
         userInput.value = '';
         updateListCount();
         selectItem({ target: item });
+        saveListToLocalStorage(); // Save the list in localStorage
     }
+}
+
+function saveListToLocalStorage() {
+    const items = [];
+    document.querySelectorAll('.inputItem').forEach(item => {
+        const text = item.querySelector('.itemText').textContent.split(' : ')[0];
+        const count = item.dataset.count;// Get the count from the dataset
+        items.push({ text, count });// Save the text and count in the array
+    });
+    localStorage.setItem('userItems', JSON.stringify(items));// Store the array in localStorage
 }
 
 function deleteItem(e) {
@@ -134,6 +146,9 @@ function selectItem(e) {
     selectedItem = e.currentTarget || e.target;
     selectedItem.style.backgroundColor = 'lightblue';
     count = parseInt(selectedItem.dataset.count);
+
+    // console.log("Selected item count:", count); // Log the selected item's count
+    
     countDisplay.textContent = `묵송 회수: ${count}`;
     resetBeadOrder();
 }
@@ -202,6 +217,12 @@ function lightUpBead() {
         selectedItem.dataset.count = count;
         selectedItem.querySelector('.itemText').textContent = `${selectedItem.querySelector('.itemText').textContent.split(':')[0]} : ${count}`;
     }
+
+    // console.log("Updated selected item count:", count); // Log the updated count
+
+    saveListToLocalStorage(); // Save the updated list with counts to localStorage
+
+    
     if (beepCount > 0 && count % beepCount === 0) {
         playBeep();
     }
@@ -239,8 +260,66 @@ beepOptions.addEventListener('click', function (e) {
                 }
             }
         }
+        localStorage.setItem('beepCount', beepCount); // Save to localStorage
         beepOptions.classList.add('hidden');
     }
 });
 
+// Utility function to save and load data from localStorage
+
+function saveListToLocalStorage() {
+    const items = [];
+    document.querySelectorAll('.inputItem').forEach(item => {
+        const text = item.querySelector('.itemText').textContent.split(' : ')[0];
+        const count = item.dataset.count;
+        items.push({ text, count });
+    });
+
+    // console.log("Saving items to localStorage:", items); // Log the items being saved
+    
+    localStorage.setItem('userItems', JSON.stringify(items));
+}
+
+function loadListFromLocalStorage() {
+    const savedItems = JSON.parse(localStorage.getItem('userItems')) || [];
+
+    // console.log("Loaded items from localStorage:", savedItems); // Log the loaded items
+    
+    savedItems.forEach(itemData => {
+        const item = document.createElement('div');
+        item.className = 'inputItem';
+        item.innerHTML = `
+            <span class="itemText">${itemData.text} : ${itemData.count}</span>
+            <button class="deleteButton">삭제</button>
+            <button class="resetButton">리셋</button>`;
+        item.dataset.count = itemData.count; // Set the count in the dataset
+        item.addEventListener('click', selectItem);
+        item.addEventListener('contextmenu', showButtons);
+        item.querySelector('.deleteButton').addEventListener('click', deleteItem);
+        item.querySelector('.resetButton').addEventListener('click', resetItemCount);
+        inputList.insertBefore(item, inputList.firstChild);
+    });
+    updateListCount();
+}
+
+// Place the `loadBeadCountFromLocalStorage` function here
+function loadBeadCountFromLocalStorage() {
+    const savedBeadCount = localStorage.getItem('beadCount');
+    if (savedBeadCount !== null) {
+        beadCount = parseInt(savedBeadCount);
+        updateBeadCount();
+    }
+}
+
+function loadBeepCountFromLocalStorage() {
+    const savedBeepCount = localStorage.getItem('beepCount');
+    if (savedBeepCount !== null) {
+        beepCount = parseInt(savedBeepCount, 10);
+        currentBeepDisplay.textContent = beepCount === 0 ? '소리 없음' : `${beepCount}`;
+    }
+}
+
 createBeads();
+loadListFromLocalStorage();
+loadBeadCountFromLocalStorage();
+loadBeepCountFromLocalStorage();
