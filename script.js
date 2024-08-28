@@ -3,6 +3,7 @@ let currentBead = 0;
 let selectedItem = null;
 let count = 0;
 let beadCount = 21;
+let beepCount = 0;
 
 const touchArea = document.getElementById('touchArea');
 const countDisplay = document.getElementById('touchCountDisplay');
@@ -15,6 +16,11 @@ const currentBeadsDisplay = document.getElementById('currentBeads');
 const beadCountSelector = document.getElementById('beadCountSelector');
 const beadCountOptions = document.getElementById('beadCountOptions');
 const customBeadCount = document.getElementById('customBeadCount');
+const beepSelector = document.getElementById('beepSelector');
+const beepOptions = document.getElementById('beepOptions');
+const currentBeepDisplay = document.getElementById('currentBeep');
+const currentBeepBeadsDisplay = document.getElementById('currentBeepBeads');
+const customBeepCount = document.getElementById('customBeepCount');
 
 menuButton.addEventListener('click', function () {
     dropdownMenu.classList.toggle('hidden');
@@ -26,10 +32,17 @@ beadCountSelector.addEventListener('click', function (e) {
     beadCountOptions.classList.toggle('hidden');
 });
 
+beepSelector.addEventListener('click', function (e) {
+    e.stopPropagation();
+    beepOptions.classList.toggle('hidden');
+    beadCountOptions.classList.add('hidden');
+});
+
 document.addEventListener('click', function (e) {
     if (!menuButton.contains(e.target) && !dropdownMenu.contains(e.target) && !beadCountOptions.contains(e.target)) {
         dropdownMenu.classList.add('hidden');
         beadCountOptions.classList.add('hidden');
+        beepOptions.classList.add('hidden');  
     }
 });
 
@@ -59,6 +72,10 @@ beadCountOptions.addEventListener('click', function (e) {
 
 function updateBeadCount() {
     currentBeadsDisplay.textContent = beadCount;
+    currentBeepBeadsDisplay.textContent = beadCount;
+    if (beepCount === beadCount) {
+        currentBeepDisplay.textContent = `현재 ${beadCount}`;
+    }
     recreateBeads();
 }
 
@@ -161,6 +178,16 @@ function createBeads() {
     }
 }
 
+function playBeep() {
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    const oscillator = audioContext.createOscillator();
+    oscillator.type = 'sine';
+    oscillator.frequency.setValueAtTime(440, audioContext.currentTime); // 440 Hz is A4
+    oscillator.connect(audioContext.destination);
+    oscillator.start();
+    oscillator.stop(audioContext.currentTime + 0.1); // Beep for 100ms
+}
+
 function lightUpBead() {
     const beads = document.querySelectorAll('.bead');
     beads.forEach(bead => bead.classList.remove('highlight'));
@@ -175,6 +202,9 @@ function lightUpBead() {
         selectedItem.dataset.count = count;
         selectedItem.querySelector('.itemText').textContent = `${selectedItem.querySelector('.itemText').textContent.split(':')[0]} : ${count}`;
     }
+    if (beepCount > 0 && count % beepCount === 0) {
+        playBeep();
+    }
 }
 
 function resetBeadOrder() {
@@ -185,5 +215,32 @@ function resetBeadOrder() {
 
 touchArea.addEventListener('mousedown', lightUpBead);
 inputButton.addEventListener('click', addInputToList);
+beepOptions.addEventListener('click', function (e) {
+    if (e.target.classList.contains('beep-option')) {
+        const newBeep = e.target.dataset.beep;
+        if (newBeep === 'off') {
+            beepCount = 0;
+            currentBeepDisplay.textContent = '소리 없음';
+        } else if (newBeep === 'current') {
+            beepCount = beadCount;
+            currentBeepDisplay.textContent = `현재 ${beadCount}`;
+            currentBeepBeadsDisplay.textContent = beadCount;
+        } else if (e.target.id === 'customBeepCount') {
+            const userInput = prompt('몇 번째마다 소리를 낼지 입력하세요:');
+            if (userInput === null || userInput.trim() === '') {
+                alert('숫자를 넣어주세요');
+            } else {
+                const parsedInput = parseInt(userInput);
+                if (!isNaN(parsedInput) && parsedInput > 0) {
+                    beepCount = parsedInput;
+                    currentBeepDisplay.textContent = `${beepCount}`;
+                } else {
+                    alert('유효한 숫자를 입력해주세요');
+                }
+            }
+        }
+        beepOptions.classList.add('hidden');
+    }
+});
 
 createBeads();
