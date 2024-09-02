@@ -124,9 +124,8 @@ h2 {
 .menu-line {
   width: 20px;
   height: 2px;
-  background-color: yellow;
+  background-color: transparent;
   margin: 3px 0;
-  opacity: 0.0;
 }
 #dropdownMenu {
   position: absolute;
