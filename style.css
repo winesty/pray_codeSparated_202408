@@ -117,7 +117,7 @@ h2 {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: images/menu_button.jpg'); /* Replace 'your_image.jpg' with your actual image filename */
+  background-image: url('menu_button.jpg'); 
   background-size: cover;
   background-position: center;
 }
