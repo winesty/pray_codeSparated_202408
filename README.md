@@ -1,4 +1,4 @@
-# Prayer Bead Counter
+# Touch Counter for Prayer
 
 A customizable, interactive prayer bead counter implemented in JavaScript.
 
